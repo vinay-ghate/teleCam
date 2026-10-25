@@ -46,7 +46,7 @@ Browser camera  →  FastAPI backend  →  Telegram Bot API  →  your chat
 
 ## Local Development
 
-### 1 — Clone & configure
+### 1 : Clone & configure
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/teleCam.git
@@ -73,7 +73,7 @@ STALE_FILE_MAX_AGE_MINUTES=60
 
 ---
 
-### 2 — Run the backend
+### 2 : Run the backend
 
 ```bash
 cd backend
@@ -86,9 +86,9 @@ Health check: `http://localhost:8000/health`
 
 ---
 
-### 3 — Serve the frontend
+### 3 : Serve the frontend
 
-The frontend is plain HTML — no build step needed.
+The frontend is plain HTML : no build step needed.
 
 **Option A – VS Code Live Server / any static file server:**
 
@@ -99,7 +99,7 @@ python -m http.server 5500
 # Open http://localhost:5500
 ```
 
-**Option B – Direct file open** (works for local dev only — camera requires `localhost` or HTTPS):
+**Option B – Direct file open** (works for local dev only : camera requires `localhost` or HTTPS):
 
 ```
 Open frontend/index.html in your browser
@@ -115,7 +115,7 @@ Open frontend/index.html in your browser
 
 ## Deploy to Render (single service, free tier)
 
-FastAPI serves both the API **and** the static frontend — one Render service, one URL, no CORS configuration needed.
+FastAPI serves both the API **and** the static frontend : one Render service, one URL, no CORS configuration needed.
 
 Render supports a **Blueprint** file (`render.yaml`) that provisions the service automatically.
 
@@ -135,7 +135,7 @@ Go to [render.com](https://render.com) and sign up / log in.
 
 1. In the Render dashboard click **New → Blueprint**.  
 2. Connect your GitHub repository.  
-3. Render detects `render.yaml` automatically — it will provision a single service called **telecam**.  
+3. Render detects `render.yaml` automatically : it will provision a single service called **telecam**.  
 4. Click **Apply**.
 
 ### Step 4 – Set secret environment variables
@@ -152,7 +152,7 @@ These are marked `sync: false` in `render.yaml` so they are **never stored in th
 ### Step 5 – Open the service URL
 
 Render gives you a single URL (e.g. `https://telecam.onrender.com`).  
-Open it in your browser — the frontend is served directly from the same process.
+Open it in your browser : the frontend is served directly from the same process.
 
 > Camera access requires **HTTPS**, which Render provides automatically. ✓
 
@@ -174,7 +174,7 @@ teleCam/
 │   ├── camera-capture.md
 │   ├── telegram-relay.md
 │   └── ephemeral-storage.md
-├── .env.example        # Template — copy to .env
+├── .env.example        # Template : copy to .env
 ├── .gitignore          # Excludes .env
 ├── render.yaml         # Render Blueprint
 └── AGENTS.md           # Project spec for AI agents
@@ -211,9 +211,9 @@ teleCam/
 
 ## Security Notes
 
-- Bot token and chat ID are **env-var only** — never hardcoded, never logged, never returned by the API.
-- Only `image/jpeg` and `image/png` are accepted — validated server-side before the file is written to disk.
-- Temp files are **never publicly accessible** — stored outside the web-served directory.
+- Bot token and chat ID are **env-var only** : never hardcoded, never logged, never returned by the API.
+- Only `image/jpeg` and `image/png` are accepted : validated server-side before the file is written to disk.
+- Temp files are **never publicly accessible** : stored outside the web-served directory.
 - Delete-on-success is confirmed against a real Telegram `200 + ok:true` response.
 
 ---
@@ -229,7 +229,3 @@ teleCam/
 | Render free tier sleeps | Free web services spin down after inactivity. The first request after sleep may take ~30 s. Upgrade to a paid plan for always-on. |
 
 ---
-
-## License
-
-MIT
