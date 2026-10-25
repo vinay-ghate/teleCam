@@ -1,0 +1,23 @@
+services:
+  # ── Single service: FastAPI serves both API and static frontend ─────────────
+  - type: web
+    name: telecam
+    runtime: python
+    region: singapore          # change to your preferred region
+    plan: free
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: uvicorn main:app --app-dir backend --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false            # set manually in Render dashboard — never commit
+      - key: TELEGRAM_CHAT_ID
+        sync: false            # set manually in Render dashboard — never commit
+      - key: MAX_UPLOAD_SIZE_MB
+        value: "50"
+      - key: TEMP_DIR
+        value: "/tmp/capture"
+      - key: REQUEST_TIMEOUT_SECONDS
+        value: "15"
+      - key: STALE_FILE_MAX_AGE_MINUTES
+        value: "60"
+    healthCheckPath: /health
