@@ -229,7 +229,3 @@ teleCam/
 | Render free tier sleeps | Free web services spin down after inactivity. The first request after sleep may take ~30 s. Upgrade to a paid plan for always-on. |
 
 ---
-
-## License
-
-MIT
